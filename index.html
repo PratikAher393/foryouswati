@@ -1,1 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Valentine 🌟💖</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background: #0a0a0a;
+            font-family: 'Arial', cursive;
+            overflow: hidden;
+        }
 
+        /* Starry background animation */
+        #starry-sky {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Main content styling */
+        .container {
+            text-align: center;
+            padding: 20px;
+            color: #fff;
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #ff69b4;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeIn 2s;
+        }
+
+        .message {
+            font-size: 1.5em;
+            margin: 20px;
+            animation: slideUp 2s;
+        }
+
+        /* Star map styling */
+        .star-map {
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            border: 2px solid gold;
+            border-radius: 10px;
+            animation: glow 2s infinite alternate;
+        }
+
+        /* Hidden surprises */
+        #secret-message {
+            display: none;
+            margin-top: 20px;
+            color: #ff69b4;
+            font-size: 1.2em;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { transform: translateY(50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes glow {
+            from { box-shadow: 0 0 5px gold; }
+            to { box-shadow: 0 0 20px gold; }
+        }
+
+        /* Falling hearts animation */
+        .heart {
+            position: absolute;
+            color: #ff69b4;
+            font-size: 20px;
+            animation: fall 3s linear infinite;
+        }
+
+        @keyframes fall {
+            0% { top: -10%; }
+            100% { top: 110%; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Falling hearts -->
+    <div id="hearts-container"></div>
+
+    <!-- Star map section -->
+    <div class="container">
+        <h1>Our Universe 🌌💫</h1>
+        <img src="star-map.jpg" alt="Custom Star Map" class="star-map">
+        <!-- Replace "star-map.jpg" with your image file name -->
+
+        <!-- Romantic message -->
+        <div class="message">
+            <p>To my forever Valentine,</p>
+            <p>Every star in the sky reminds me of the sparkle in your eyes ✨</p>
+            <p>Happy Valentine's Day, my love! 💖</p>
+        </div>
+
+        <!-- Hidden surprise button -->
+        <button onclick="revealSecret()" style="
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        ">Click for a Surprise!</button>
+        <div id="secret-message">
+            <p>You're the best thing that ever happened to me! 🌟</p>
+            <p>Always yours, [Your Name]</p>
+        </div>
+    </div>
+
+    <!-- Background music -->
+    <audio id="myAudio" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        <!-- Replace "music.mp3" with your audio file name -->
+    </audio>
+
+    <script>
+        // Generate falling hearts
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts-container');
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heartsContainer.appendChild(heart);
+            }
+        }
+
+        // Reveal secret message
+        function revealSecret() {
+            document.getElementById('secret-message').style.display = 'block';
+            // Add fireworks effect
+            for(let i = 0; i < 20; i++) {
+                setTimeout(() => createHearts(), i * 100);
+            }
+        }
+
+        // Start music on click
+        document.body.onclick = function() {
+            document.getElementById('myAudio').play();
+        }
+
+        // Initialize falling hearts
+        createHearts();
+    </script>
+</body>
+</html>
