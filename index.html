@@ -3,17 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Valentine 🌟💖</title>
+    <title>For My Valentine 🌸💖</title>
     <style>
         body {
             margin: 0;
             height: 100vh;
-            background: #0a0a0a;
-            font-family: 'Arial', cursive;
+            background: linear-gradient(to bottom, #a8e6cf, #ffdde1, #ee9ca7);
+            font-family: 'Arial', sans-serif;
             overflow: hidden;
         }
 
-        /* Starry background animation */
         #starry-sky {
             position: fixed;
             width: 100%;
@@ -21,7 +20,6 @@
             z-index: -1;
         }
 
-        /* Main content styling */
         .container {
             text-align: center;
             padding: 20px;
@@ -30,7 +28,7 @@
 
         h1 {
             font-size: 3em;
-            color: #ff69b4;
+            color: #28a745;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             animation: fadeIn 2s;
         }
@@ -41,25 +39,22 @@
             animation: slideUp 2s;
         }
 
-        /* Star map styling */
         .star-map {
             width: 80%;
             max-width: 600px;
             margin: 20px auto;
-            border: 2px solid gold;
+            border: 3px solid #6bc98d;
             border-radius: 10px;
-            animation: glow 2s infinite alternate;
+            box-shadow: 0 0 15px #6bc98d;
         }
 
-        /* Hidden surprises */
         #secret-message {
             display: none;
             margin-top: 20px;
-            color: #ff69b4;
+            color: #28a745;
             font-size: 1.2em;
         }
 
-        /* Animations */
         @keyframes fadeIn {
             from { opacity: 0; }
             to { opacity: 1; }
@@ -70,69 +65,65 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
-        @keyframes glow {
-            from { box-shadow: 0 0 5px gold; }
-            to { box-shadow: 0 0 20px gold; }
-        }
-
-        /* Falling hearts animation */
         .heart {
             position: absolute;
-            color: #ff69b4;
+            color: #FF0000;
             font-size: 20px;
-            animation: fall 3s linear infinite;
+            animation: fall 5s linear infinite;
         }
 
         @keyframes fall {
-            0% { top: -10%; }
-            100% { top: 110%; }
+            0% { top: -10%; opacity: 1; }
+            100% { top: 100%; opacity: 0; }
+        }
+
+        .memories {
+            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .memories img {
+            width: 200px;
+            height: auto;
+            border-radius: 10px;
+            margin: 10px;
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
         }
     </style>
 </head>
 <body>
-    <!-- Falling hearts -->
     <div id="hearts-container"></div>
 
-    <!-- Star map section -->
     <div class="container">
         <h1>Our Universe 🌌💫</h1>
-        <img src="star-map.jpeg" alt="Custom Star Map" class="star-map">
-        
-        <!-- Replace "star-map.jpg" with your image file name -->
+        <img src="/mnt/data/star-map.jpeg" alt="Custom Star Map" class="star-map">
 
-        <!-- Romantic message -->
         <div class="message">
             <p>To my forever Valentine,</p>
             <p>Every star in the sky reminds me of the sparkle in your eyes ✨</p>
             <p>Happy Valentine's Day, my love! 💖</p>
         </div>
 
-        <!-- Hidden surprise button -->
-        <button onclick="revealSecret()" style="
-            background: #ff69b4;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-            cursor: pointer;
-        ">Click for a Surprise!</button>
+        <button onclick="revealSecret()" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Click for a Surprise!</button>
         <div id="secret-message">
             <p>You're the best thing that ever happened to me! 🌟</p>
             <p>Always yours, [Your Name]</p>
         </div>
+
+        <div class="memories">
+            <h2>Our Memories 📸💖</h2>
+            <img src="memory1.jpg" alt="Memory 1">
+            <img src="memory2.jpg" alt="Memory 2">
+            <img src="memory3.jpg" alt="Memory 3">
+        </div>
     </div>
 
-    <!-- Background music -->
-    <audio id="myAudio" loop>
-        <source src="tainu-khabar-nahi-from-munjya-128-ytshorts.savetube.me.mp3" type="audio/mpeg">
-        <button onclick="document.getElementById('myAudio').play()">Click to Play Music 💖</button><!-- Replace "music.mp3" with your audio file name -->
-    </audio>
-
     <script>
-        // Generate falling hearts
         function createHearts() {
             const heartsContainer = document.getElementById('hearts-container');
-            for (let i = 0; i < 50; i++) {
+            for (let i = 0; i < 20; i++) {
                 const heart = document.createElement('div');
                 heart.innerHTML = '❤️';
                 heart.classList.add('heart');
@@ -142,22 +133,12 @@
             }
         }
 
-        // Reveal secret message
         function revealSecret() {
             document.getElementById('secret-message').style.display = 'block';
-            // Add fireworks effect
-            for(let i = 0; i < 20; i++) {
-                setTimeout(() => createHearts(), i * 100);
-            }
         }
 
-        // Start music on click
-        document.body.onclick = function() {
-            document.getElementById('myAudio').play();
-        }
-
-        // Initialize falling hearts
         createHearts();
     </script>
 </body>
 </html>
+
