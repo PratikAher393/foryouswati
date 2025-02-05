@@ -46,6 +46,18 @@
             border: 3px solid #6bc98d;
             border-radius: 10px;
             box-shadow: 0 0 15px #6bc98d;
+            position: relative;
+        }
+        .star-map-text {
+            position: absolute;
+            top: 90%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: #ffffff;
+            background: rgba(0, 0, 0, 0.6);
+            padding: 10px;
+            border-radius: 10px;
+            font-size: 1.2em;
         }
 
         #secret-message {
@@ -69,11 +81,12 @@
             position: absolute;
             color: #FF0000;
             font-size: 20px;
-            animation: fall 5s linear infinite;
+            animation: fall 10s linear;
         }
 
         @keyframes fall {
             0% { top: -10%; opacity: 1; }
+            90% { opacity: 1; }
             100% { top: 100%; opacity: 0; }
         }
 
@@ -90,6 +103,14 @@
             border-radius: 10px;
             margin: 10px;
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+            cursor: pointer;
+        }
+
+        #love-meter {
+            font-size: 2em;
+            cursor: pointer;
+            margin-top: 20px;
+            color: #ff69b4;
         }
     </style>
 </head>
@@ -98,7 +119,10 @@
 
     <div class="container">
         <h1>Our Universe 🌌💫</h1>
-        <img src="/mnt/data/star-map.jpeg" alt="Custom Star Map" class="star-map">
+        <div class="star-map">
+            <img src="/mnt/data/star-map.jpeg" alt="Custom Star Map" class="star-map">
+            <div class="star-map-text">The night sky when we met 💖</div>
+        </div>
 
         <div class="message">
             <p>To my forever Valentine,</p>
@@ -112,13 +136,20 @@
             <p>Always yours, [Your Name]</p>
         </div>
 
+        <div id="love-meter">❤️ <span id="love-count">0</span></div>
+
         <div class="memories">
             <h2>Our Memories 📸💖</h2>
-            <img src="memory1.jpg" alt="Memory 1">
-            <img src="memory2.jpg" alt="Memory 2">
-            <img src="memory3.jpg" alt="Memory 3">
+            <img src="memory1.jpg" alt="Memory 1" onclick="openMemory('memory1.jpg')">
+            <img src="memory2.jpg" alt="Memory 2" onclick="openMemory('memory2.jpg')">
+            <img src="memory3.jpg" alt="Memory 3" onclick="openMemory('memory3.jpg')">
         </div>
     </div>
+
+    <audio id="bg-music" loop>
+        <source src="love-song.mp3" type="audio/mpeg">
+    </audio>
+    <button onclick="toggleMusic()">Play/Pause Music 🎵</button>
 
     <script>
         function createHearts() {
@@ -135,10 +166,31 @@
 
         function revealSecret() {
             document.getElementById('secret-message').style.display = 'block';
+            setTimeout(() => {
+                document.getElementById('hearts-container').innerHTML = '';
+            }, 10000);
+        }
+
+        function openMemory(imageSrc) {
+            window.open(imageSrc, '_blank');
+        }
+
+        let loveCount = 0;
+        document.getElementById('love-meter').addEventListener('click', function() {
+            loveCount++;
+            document.getElementById('love-count').textContent = loveCount;
+        });
+
+        function toggleMusic() {
+            let music = document.getElementById('bg-music');
+            if (music.paused) {
+                music.play();
+            } else {
+                music.pause();
+            }
         }
 
         createHearts();
     </script>
 </body>
 </html>
-
