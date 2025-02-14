@@ -8,7 +8,10 @@
         body {
             margin: 0;
             height: 100vh;
-            background: #0a0a0a;
+            background-image: url('background.jpg'); /* Add your image here */
+            background-size: cover; /* Ensures the image covers the entire background */
+            background-position: center; /* Centers the image */
+            background-repeat: no-repeat; /* Prevents the image from repeating */
             font-family: 'Arial', cursive;
             overflow: hidden;
         }
@@ -24,6 +27,10 @@
             text-align: center;
             padding: 20px;
             color: #fff;
+            background: rgba(0, 0, 0, 0.5); /* Adds a semi-transparent overlay for better readability */
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 600px;
         }
 
         h1 {
@@ -117,7 +124,7 @@
         ">Play Music 💖</button>
     </div>
     <audio id="myAudio" loop>
-        <source src="Tainu Khabar Nahi (From Munjya).mp3" type="audio/mpeg">
+        <source src="music.mp3" type="audio/mpeg">
     </audio>
     <script>
         function createHearts() {
