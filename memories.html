@@ -35,6 +35,20 @@
             from { opacity: 0; }
             to { opacity: 1; }
         }
+
+        /* Play Button Styling */
+        #playButton {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1.2em;
+        }
     </style>
 </head>
 <body>
@@ -42,5 +56,26 @@
     <img src="photo2.jpg" alt="Memory 2" class="photo">
     <img src="photo3.jpg" alt="Memory 3" class="photo">
     <!-- Add more photos as needed -->
+
+    <!-- Play Button -->
+    <button id="playButton">Play Music 💖</button>
+
+    <!-- Audio Player -->
+    <audio id="myAudio" loop>
+        <source src="music.mp3" type="audio/mpeg">
+        Your browser does not support audio.
+    </audio>
+
+    <script>
+        // Start music when the play button is clicked
+        document.getElementById('playButton').onclick = function() {
+            document.getElementById('myAudio').play();
+        };
+
+        // Optional: Autoplay after a small delay (may not work in all browsers)
+        setTimeout(() => {
+            document.getElementById('myAudio').play();
+        }, 1000); // 1-second delay
+    </script>
 </body>
 </html>
