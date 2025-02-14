@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>For My Valentine 🌟💖</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-image: url('moon.png');
+            background-size: cover;
+            background-position: center;
+            font-family: 'Arial', cursive;
+            overflow-y: auto; /* Allow scrolling */
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 600px;
+            position: relative;
+            z-index: 2; /* Keep above flowers */
+        }
+
+        h1 {
+            font-size: 3em;
+            color: #ff69b4;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeIn 2s;
+        }
+
+        .star-map {
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto;
+            border: 2px solid gold;
+            border-radius: 10px;
+            animation: glow 2s infinite alternate;
+        }
+
+        #secret-message {
+            display: none;
+            margin-top: 20px;
+            color: #ff69b4;
+            font-size: 1.2em;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .flower {
+            position: absolute;
+            font-size: 30px;
+            animation: fall 3s linear infinite;
+            z-index: 1; /* Keep below content */
+        }
+
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes glow { from { box-shadow: 0 0 5px gold; } to { box-shadow: 0 0 20px gold; } }
+        @keyframes fall { 0% { top: -10%; } 100% { top: 110%; } }
+
+        /* Memories link styling */
+        .memories-link {
+            display: block;
+            margin-top: 20px;
+            color: #ff69b4;
+            text-decoration: none;
+            font-size: 1.2em;
+            position: relative;
+            z-index: 3; /* Highest priority */
+        }
+    </style>
+</head>
+<body>
+    <div id="flowers-container"></div>
+    
+    <div class="container">
+        <h1>Our Universe 🌌💫</h1>
+        <img src="star-map.jpeg" alt="Custom Star Map" class="star-map">
+
+        <div class="message">
+            <p>To my forever Valentine,</p>
+            <p>Every star in the sky reminds me of your sparkle ✨</p>
+            <p>Happy Valentine's Day! 💖</p>
+        </div>
+
+        <button onclick="revealSurprise()" class="surprise-btn">
+            Click for a Surprise!
+        </button>
+
+        <div id="secret-message">
+            <p>You're my everything! 🌟</p>
+            <p>Forever yours, [Your Name]</p>
+        </div>
+
+        <a href="memories.html" class="memories-link">
+            View Our Memories 🌸
+        </a>
+
+        <button onclick="document.getElementById('myAudio').play()" class="music-btn">
+            Play Music 🎵
+        </button>
+    </div>
+
+    <audio id="myAudio" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        // Flower animation
+        function createFlowers() {
+            const container = document.getElementById('flowers-container');
+            for (let i = 0; i < 20; i++) {
+                const flower = document.createElement('div');
+                flower.innerHTML = '🌸';
+                flower.classList.add('flower');
+                flower.style.left = Math.random() * 100 + '%';
+                flower.style.animationDelay = Math.random() * 2 + 's';
+                container.appendChild(flower);
+            }
+        }
+
+        // Surprise handler
+        function revealSurprise() {
+            const message = document.getElementById('secret-message');
+            message.style.display = 'block';
+            
+            createFlowers();
+            setTimeout(() => {
+                message.scrollIntoView({ behavior: 'smooth' });
+            }, 100);
+        }
+    </script>
+</body>
+</html>
