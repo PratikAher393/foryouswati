@@ -8,7 +8,7 @@
         body {
             margin: 0;
             height: 100vh;
-            background-image: url('moon.png'); /* Add your image here */
+            background-image: url('moon.png'); /* Background image */
             background-size: cover; /* Ensures the image covers the entire background */
             background-position: center; /* Centers the image */
             background-repeat: no-repeat; /* Prevents the image from repeating */
@@ -16,18 +16,11 @@
             overflow: hidden;
         }
 
-        #starry-sky {
-            position: fixed;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
-        }
-
         .container {
             text-align: center;
             padding: 20px;
             color: #fff;
-            background: rgba(0, 0, 0, 0.5); /* Adds a semi-transparent overlay for better readability */
+            background: rgba(0, 0, 0, 0.5); /* Semi-transparent overlay for better readability */
             border-radius: 10px;
             margin: 20px auto;
             max-width: 600px;
@@ -77,10 +70,9 @@
             to { box-shadow: 0 0 20px gold; }
         }
 
-        .heart {
+        .flower {
             position: absolute;
-            color: #ff69b4;
-            font-size: 20px;
+            font-size: 30px;
             animation: fall 3s linear infinite;
         }
 
@@ -91,7 +83,7 @@
     </style>
 </head>
 <body>
-    <div id="hearts-container"></div>
+    <div id="flowers-container"></div>
     <div class="container">
         <h1>Our Universe 🌌💫</h1>
         <img src="star-map.jpeg" alt="Custom Star Map" class="star-map">
@@ -100,7 +92,7 @@
             <p>Every star in the sky reminds me of the sparkle in your eyes ✨</p>
             <p>Happy Valentine's Day, my love! 💖</p>
         </div>
-        <button onclick="revealSecret()" style="
+        <button onclick="revealSurprise()" style="
             background: #ff69b4;
             color: white;
             border: none;
@@ -122,31 +114,38 @@
             cursor: pointer;
             margin-top: 20px;
         ">Play Music 💖</button>
+        <!-- Link to Memories Page -->
+        <a href="memories.html" style="
+            display: block;
+            margin-top: 20px;
+            color: #ff69b4;
+            text-decoration: none;
+            font-size: 1.2em;
+        ">View Our Memories 🌸</a>
     </div>
     <audio id="myAudio" loop>
         <source src="Tainu Khabar Nahi (From Munjya).mp3" type="audio/mpeg">
     </audio>
     <script>
-        function createHearts() {
-            const heartsContainer = document.getElementById('hearts-container');
-            for (let i = 0; i < 50; i++) {
-                const heart = document.createElement('div');
-                heart.innerHTML = '❤️';
-                heart.classList.add('heart');
-                heart.style.left = Math.random() * 100 + '%';
-                heart.style.animationDelay = Math.random() * 2 + 's';
-                heartsContainer.appendChild(heart);
+        function createFlowers() {
+            const flowersContainer = document.getElementById('flowers-container');
+            for (let i = 0; i < 20; i++) {
+                const flower = document.createElement('div');
+                flower.innerHTML = '🌸'; /* Flower emoji */
+                flower.classList.add('flower');
+                flower.style.left = Math.random() * 100 + '%';
+                flower.style.animationDelay = Math.random() * 2 + 's';
+                flowersContainer.appendChild(flower);
             }
         }
 
-        function revealSecret() {
+        function revealSurprise() {
+            createFlowers();
+            setTimeout(() => {
+                document.getElementById('flowers-container').innerHTML = ''; /* Clear flowers after 5 seconds */
+            }, 5000);
             document.getElementById('secret-message').style.display = 'block';
-            for(let i = 0; i < 20; i++) {
-                setTimeout(() => createHearts(), i * 100);
-            }
         }
-
-        createHearts();
     </script>
 </body>
 </html>
