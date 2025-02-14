@@ -13,7 +13,7 @@
             background-position: center; /* Centers the image */
             background-repeat: no-repeat; /* Prevents the image from repeating */
             font-family: 'Arial', cursive;
-            overflow: hidden;
+            overflow-y: auto; /* Enable vertical scrolling */
         }
 
         .container {
@@ -24,6 +24,8 @@
             border-radius: 10px;
             margin: 20px auto;
             max-width: 600px;
+            position: relative;
+            z-index: 2; /* Keep above flowers */
         }
 
         h1 {
@@ -53,6 +55,16 @@
             margin-top: 20px;
             color: #ff69b4;
             font-size: 1.2em;
+            background: rgba(0, 0, 0, 0.7); /* Add background for better readability */
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .flower {
+            position: absolute;
+            font-size: 30px;
+            animation: fall 3s linear infinite;
+            z-index: 1; /* Keep below content */
         }
 
         @keyframes fadeIn {
@@ -68,12 +80,6 @@
         @keyframes glow {
             from { box-shadow: 0 0 5px gold; }
             to { box-shadow: 0 0 20px gold; }
-        }
-
-        .flower {
-            position: absolute;
-            font-size: 30px;
-            animation: fall 3s linear infinite;
         }
 
         @keyframes fall {
@@ -145,6 +151,8 @@
                 document.getElementById('flowers-container').innerHTML = ''; /* Clear flowers after 5 seconds */
             }, 5000);
             document.getElementById('secret-message').style.display = 'block';
+            // Scroll to the secret message
+            document.getElementById('secret-message').scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
