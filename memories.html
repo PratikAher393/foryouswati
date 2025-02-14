@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Our Memories 🌸</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            background-image: url('background.jpg'); /* Background image */
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Arial', cursive;
+            overflow: hidden;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .photo {
+            width: 200px;
+            height: 200px;
+            margin: 10px;
+            border: 2px solid gold;
+            border-radius: 10px;
+            object-fit: cover;
+            animation: fadeIn 2s;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+</head>
+<body>
+    <img src="photo1.jpg" alt="Memory 1" class="photo">
+    <img src="photo2.jpg" alt="Memory 2" class="photo">
+    <img src="photo3.jpg" alt="Memory 3" class="photo">
+    <!-- Add more photos as needed -->
+</body>
+</html>
