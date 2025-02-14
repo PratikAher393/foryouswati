@@ -118,9 +118,85 @@
                 font-size: 1em; /* Smaller font for very small screens */
             }
         }
+
+        /* Love Letter Styles */
+        .envelope {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            font-size: 50px;
+            cursor: pointer;
+            animation: float 3s ease-in-out infinite;
+            z-index: 1000;
+        }
+
+        .letter-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1001;
+            display: none;
+        }
+
+        .letter {
+            background: #fff1f0;
+            padding: 30px;
+            border-radius: 10px;
+            width: 300px;
+            max-width: 90%;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
+        }
     </style>
 </head>
 <body>
+    <!-- Love Letter Elements -->
+    <div class="envelope" onclick="openLetter()">💌</div>
+    <div class="overlay" onclick="closeLetter()"></div>
+    <div class="letter-container">
+        <div class="letter">
+            <button class="close-btn" onclick="closeLetter()">×</button>
+            <h2 style="color: #ff69b4;">To My Dearest Swati,</h2>
+            <textarea placeholder="Write your special message here..." 
+                      style="width:100%; height:200px; border:2px solid #ff69b4; padding:15px; border-radius:10px;">
+From the moment I saw you, I knew my life would never be the same. Your smile lights up my world brighter than any star in the sky. Every moment with you is a treasure I'll always cherish. You're not just my love – you're my forever. 💖
+            </textarea>
+            <p style="text-align: right; color: #ff69b4; margin-top:15px;">
+                Forever Yours,<br>Pratik
+            </p>
+        </div>
+    </div>
+
+    <!-- Existing Content -->
     <div id="flowers-container"></div>
     <div class="container">
         <h1>Our Universe 🌌💫</h1>
@@ -142,6 +218,7 @@
         <source src="Tainu Khabar Nahi (From Munjya).mp3" type="audio/mpeg">
     </audio>
     <script>
+        // Flower animation
         function createFlowers() {
             const flowersContainer = document.getElementById('flowers-container');
             for (let i = 0; i < 20; i++) {
@@ -154,14 +231,26 @@
             }
         }
 
+        // Surprise handler
         function revealSurprise() {
             createFlowers();
             setTimeout(() => {
                 document.getElementById('flowers-container').innerHTML = ''; /* Clear flowers after 5 seconds */
-            }, 10000);
+            }, 5000);
             document.getElementById('secret-message').style.display = 'block';
             // Scroll to the secret message
             document.getElementById('secret-message').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Love Letter Functions
+        function openLetter() {
+            document.querySelector('.overlay').style.display = 'block';
+            document.querySelector('.letter-container').style.display = 'block';
+        }
+
+        function closeLetter() {
+            document.querySelector('.overlay').style.display = 'none';
+            document.querySelector('.letter-container').style.display = 'none';
         }
     </script>
 </body>
