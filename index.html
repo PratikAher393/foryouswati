@@ -5,7 +5,119 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>For My Life 🌟💖</title>
     <style>
-        /* Previous styles remain the same */
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background-image: url('moon.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            font-family: 'Arial', cursive;
+            overflow-y: auto; /* Enable scrolling */
+        }
+
+        .container {
+            text-align: center;
+            padding: 20px;
+            color: #fff;
+            background: rgba(0, 0, 0, 0.3); /* Lighter overlay */
+            border-radius: 10px;
+            margin: 20px auto;
+            max-width: 90%; /* Adjust width for mobile */
+            position: relative;
+            z-index: 2; /* Keep above flowers */
+        }
+
+        h1 {
+            font-size: 2.5em; /* Smaller font for mobile */
+            color: #ff69b4;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: fadeIn 2s;
+        }
+
+        .message {
+            font-size: 1.2em; /* Smaller font for mobile */
+            margin: 20px;
+            animation: slideUp 2s;
+        }
+
+        .star-map {
+            width: 100%; /* Full width on mobile */
+            max-width: 600px;
+            margin: 20px auto;
+            border: 2px solid gold;
+            border-radius: 10px;
+            animation: glow 2s infinite alternate;
+        }
+
+        #secret-message {
+            display: none;
+            margin-top: 20px;
+            color: #ff69b4;
+            font-size: 1.1em; /* Smaller font for mobile */
+            background: rgba(0, 0, 0, 0.3); /* Lighter overlay */
+            padding: 15px;
+            border-radius: 10px;
+        }
+
+        .flower {
+            position: absolute;
+            font-size: 25px; /* Smaller flowers for mobile */
+            animation: fall 3s linear infinite;
+            z-index: 1; /* Keep below content */
+        }
+
+        /* Button styling */
+        button {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em; /* Smaller font for mobile */
+            margin-top: 10px;
+            width: 100%; /* Full width on mobile */
+            max-width: 300px; /* Limit button width */
+        }
+
+        /* Link styling */
+        a {
+            display: block;
+            margin-top: 20px;
+            color: #ff69b4;
+            text-decoration: none;
+            font-size: 1.1em; /* Smaller font for mobile */
+        }
+
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes glow { from { box-shadow: 0 0 5px gold; } to { box-shadow: 0 0 20px gold; } }
+        @keyframes fall { 0% { top: -10%; } 100% { top: 110%; } }
+
+        /* Media queries for mobile responsiveness */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em; /* Smaller font for very small screens */
+            }
+
+            .message {
+                font-size: 1em; /* Smaller font for very small screens */
+            }
+
+            .star-map {
+                width: 100%; /* Full width on very small screens */
+            }
+
+            button {
+                font-size: 0.9em; /* Smaller font for very small screens */
+            }
+
+            a {
+                font-size: 1em; /* Smaller font for very small screens */
+            }
+        }
 
         /* Love Letter Styles */
         .envelope {
