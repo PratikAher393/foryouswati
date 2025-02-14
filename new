@@ -3,39 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Valentine 🌟💖</title>
+    <title>For My Life 🌟💖</title>
     <style>
         body {
             margin: 0;
-            height: 100vh;
+            min-height: 100vh;
             background-image: url('moon.png');
             background-size: cover;
             background-position: center;
+            background-repeat: no-repeat;
             font-family: 'Arial', cursive;
-            overflow-y: auto; /* Allow scrolling */
+            overflow-y: auto; /* Enable scrolling */
         }
 
         .container {
             text-align: center;
             padding: 20px;
             color: #fff;
-            background: rgba(0, 0, 0, 0.5);
+            background: rgba(0, 0, 0, 0.3); /* Lighter overlay */
             border-radius: 10px;
             margin: 20px auto;
-            max-width: 600px;
+            max-width: 90%; /* Adjust width for mobile */
             position: relative;
             z-index: 2; /* Keep above flowers */
         }
 
         h1 {
-            font-size: 3em;
+            font-size: 2.5em; /* Smaller font for mobile */
             color: #ff69b4;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             animation: fadeIn 2s;
         }
 
+        .message {
+            font-size: 1.2em; /* Smaller font for mobile */
+            margin: 20px;
+            animation: slideUp 2s;
+        }
+
         .star-map {
-            width: 80%;
+            width: 100%; /* Full width on mobile */
             max-width: 600px;
             margin: 20px auto;
             border: 2px solid gold;
@@ -47,94 +54,202 @@
             display: none;
             margin-top: 20px;
             color: #ff69b4;
-            font-size: 1.2em;
-            background: rgba(0, 0, 0, 0.7);
+            font-size: 1.1em; /* Smaller font for mobile */
+            background: rgba(0, 0, 0, 0.3); /* Lighter overlay */
             padding: 15px;
             border-radius: 10px;
         }
 
         .flower {
             position: absolute;
-            font-size: 30px;
+            font-size: 25px; /* Smaller flowers for mobile */
             animation: fall 3s linear infinite;
             z-index: 1; /* Keep below content */
         }
 
-        /* Animations */
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes glow { from { box-shadow: 0 0 5px gold; } to { box-shadow: 0 0 20px gold; } }
-        @keyframes fall { 0% { top: -10%; } 100% { top: 110%; } }
+        /* Button styling */
+        button {
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em; /* Smaller font for mobile */
+            margin-top: 10px;
+            width: 100%; /* Full width on mobile */
+            max-width: 300px; /* Limit button width */
+        }
 
-        /* Memories link styling */
-        .memories-link {
+        /* Link styling */
+        a {
             display: block;
             margin-top: 20px;
             color: #ff69b4;
             text-decoration: none;
-            font-size: 1.2em;
-            position: relative;
-            z-index: 3; /* Highest priority */
+            font-size: 1.1em; /* Smaller font for mobile */
+        }
+
+        /* Animations */
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        @keyframes slideUp { from { transform: translateY(50px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes glow { from { box-shadow: 0 0 5px gold; } to { box-shadow: 0 0 20px gold; } }
+        @keyframes fall { 0% { top: -10%; } 100% { top: 110%; } }
+
+        /* Media queries for mobile responsiveness */
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2em; /* Smaller font for very small screens */
+            }
+
+            .message {
+                font-size: 1em; /* Smaller font for very small screens */
+            }
+
+            .star-map {
+                width: 100%; /* Full width on very small screens */
+            }
+
+            button {
+                font-size: 0.9em; /* Smaller font for very small screens */
+            }
+
+            a {
+                font-size: 1em; /* Smaller font for very small screens */
+            }
+        }
+
+        /* Love Letter Styles */
+        .envelope {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            font-size: 50px;
+            cursor: pointer;
+            animation: float 3s ease-in-out infinite;
+            z-index: 1000;
+        }
+
+        .letter-container {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1001;
+            display: none;
+        }
+
+        .letter {
+            background: #fff1f0;
+            padding: 30px;
+            border-radius: 10px;
+            width: 300px;
+            max-width: 90%;
+            box-shadow: 0 0 20px rgba(0,0,0,0.2);
+        }
+
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #ff69b4;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            cursor: pointer;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); }
         }
     </style>
 </head>
 <body>
+    <!-- Love Letter Elements -->
+    <div class="envelope" onclick="openLetter()">💌</div>
+    <div class="overlay" onclick="closeLetter()"></div>
+    <div class="letter-container">
+        <div class="letter">
+            <button class="close-btn" onclick="closeLetter()">×</button>
+            <h2 style="color: #ff69b4;">To My Dearest Swati,</h2>
+            <div style="font-size: 1.1em; line-height: 1.6; color: #333;">
+                I never thought i'd find someone who makes my heart sing & my soul dance. Our first kiss, Those long tight hugs, Our late night conversations, I remember them all. Every moment with you is a treasure I'll always cherish. You're not just my love – you're my forever. 💖
+            </div>
+            <p style="text-align: right; color: #ff69b4; margin-top:15px;">
+                Forever Yours,<br>Pratik
+            </p>
+        </div>
+    </div>
+
+    <!-- Existing Content -->
     <div id="flowers-container"></div>
-    
     <div class="container">
         <h1>Our Universe 🌌💫</h1>
         <img src="star-map.jpeg" alt="Custom Star Map" class="star-map">
-
         <div class="message">
             <p>To my forever Valentine,</p>
-            <p>Every star in the sky reminds me of your sparkle ✨</p>
-            <p>Happy Valentine's Day! 💖</p>
+            <p>Every star in the sky reminds me of the sparkle in your eyes ✨</p>
+            <p>Happy Valentine's Day, my love! 💖</p>
         </div>
-
-        <button onclick="revealSurprise()" class="surprise-btn">
-            Click for a Surprise!
-        </button>
-
+        <button onclick="revealSurprise()">The reason why I love you!</button>
         <div id="secret-message">
-            <p>You're my everything! 🌟</p>
-            <p>Forever yours, [Your Name]</p>
+            <p>There is no reason. I like you without a reason. I Love you because you are you! 🌟</p>
+            <p>Always yours, Pratik</p>
         </div>
-
-        <a href="memories.html" class="memories-link">
-            View Our Memories 🌸
-        </a>
-
-        <button onclick="document.getElementById('myAudio').play()" class="music-btn">
-            Play Music 🎵
-        </button>
+        <button onclick="document.getElementById('myAudio').play()">Play Music 💖</button>
+        <a href="memories.html">View Our Memories 🌸</a>
     </div>
-
     <audio id="myAudio" loop>
-        <source src="music.mp3" type="audio/mpeg">
+        <source src="Tainu Khabar Nahi (From Munjya).mp3" type="audio/mpeg">
     </audio>
-
     <script>
         // Flower animation
         function createFlowers() {
-            const container = document.getElementById('flowers-container');
+            const flowersContainer = document.getElementById('flowers-container');
             for (let i = 0; i < 20; i++) {
                 const flower = document.createElement('div');
-                flower.innerHTML = '🌸';
+                flower.innerHTML = '🌸'; /* Flower emoji */
                 flower.classList.add('flower');
                 flower.style.left = Math.random() * 100 + '%';
                 flower.style.animationDelay = Math.random() * 2 + 's';
-                container.appendChild(flower);
+                flowersContainer.appendChild(flower);
             }
         }
 
         // Surprise handler
         function revealSurprise() {
-            const message = document.getElementById('secret-message');
-            message.style.display = 'block';
-            
             createFlowers();
             setTimeout(() => {
-                message.scrollIntoView({ behavior: 'smooth' });
-            }, 100);
+                document.getElementById('flowers-container').innerHTML = ''; /* Clear flowers after 5 seconds */
+            }, 5000);
+            document.getElementById('secret-message').style.display = 'block';
+            // Scroll to the secret message
+            document.getElementById('secret-message').scrollIntoView({ behavior: 'smooth' });
+        }
+
+        // Love Letter Functions
+        function openLetter() {
+            document.querySelector('.overlay').style.display = 'block';
+            document.querySelector('.letter-container').style.display = 'block';
+        }
+
+        function closeLetter() {
+            document.querySelector('.overlay').style.display = 'none';
+            document.querySelector('.letter-container').style.display = 'none';
         }
     </script>
 </body>
