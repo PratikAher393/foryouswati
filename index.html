@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>For My Valentine 🌸💖</title>
+    <title>For My Valentine 🌟💖</title>
     <style>
         body {
             margin: 0;
             height: 100vh;
-            background: linear-gradient(to bottom, #a8e6cf, #ffdde1, #ee9ca7);
-            font-family: 'Arial', sans-serif;
+            background: #0a0a0a;
+            font-family: 'Arial', cursive;
             overflow: hidden;
         }
 
@@ -28,7 +28,7 @@
 
         h1 {
             font-size: 3em;
-            color: #28a745;
+            color: #ff69b4;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
             animation: fadeIn 2s;
         }
@@ -43,31 +43,15 @@
             width: 80%;
             max-width: 600px;
             margin: 20px auto;
-            border: 4px solid #6bc98d;
+            border: 2px solid gold;
             border-radius: 10px;
-            box-shadow: 0 0 15px #6bc98d;
-            position: relative;
-        }
-        .star-map img {
-            width: 100%;
-            border-radius: 10px;
-        }
-        .star-map-text {
-            position: absolute;
-            top: 90%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: #ffffff;
-            background: rgba(0, 0, 0, 0.6);
-            padding: 10px;
-            border-radius: 10px;
-            font-size: 1.2em;
+            animation: glow 2s infinite alternate;
         }
 
         #secret-message {
             display: none;
             margin-top: 20px;
-            color: #28a745;
+            color: #ff69b4;
             font-size: 1.2em;
         }
 
@@ -81,91 +65,81 @@
             to { transform: translateY(0); opacity: 1; }
         }
 
+        @keyframes glow {
+            from { box-shadow: 0 0 5px gold; }
+            to { box-shadow: 0 0 20px gold; }
+        }
+
         .heart {
             position: absolute;
-            color: #FF0000;
+            color: #ff69b4;
             font-size: 20px;
-            animation: fall 5s linear;
+            animation: fall 3s linear infinite;
         }
 
         @keyframes fall {
-            0% { top: -10%; opacity: 1; }
-            90% { opacity: 1; }
-            100% { top: 100%; opacity: 0; }
-        }
-
-        .memories {
-            margin-top: 40px;
-            background: rgba(255, 255, 255, 0.2);
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .memories img {
-            width: 200px;
-            height: auto;
-            border-radius: 10px;
-            margin: 10px;
-            box-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
-            cursor: pointer;
+            0% { top: -10%; }
+            100% { top: 110%; }
         }
     </style>
 </head>
 <body>
     <div id="hearts-container"></div>
-
     <div class="container">
         <h1>Our Universe 🌌💫</h1>
-        <div class="star-map">
-            <img src="/mnt/data/star-map.jpeg" alt="Custom Star Map">
-            <div class="star-map-text">The night sky when we met 💖</div>
-        </div>
-
+        <img src="star-map.jpeg" alt="Custom Star Map" class="star-map">
         <div class="message">
             <p>To my forever Valentine,</p>
             <p>Every star in the sky reminds me of the sparkle in your eyes ✨</p>
             <p>Happy Valentine's Day, my love! 💖</p>
         </div>
-
-        <button onclick="revealSecret()" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Click for a Surprise!</button>
+        <button onclick="revealSecret()" style="
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        ">Click for a Surprise!</button>
         <div id="secret-message">
             <p>You're the best thing that ever happened to me! 🌟</p>
             <p>Always yours, [Your Name]</p>
         </div>
-
-        <div class="memories">
-            <h2>Our Memories 📸💖</h2>
-            <img src="memory1.jpg" alt="Memory 1" onclick="openMemory('memory1.jpg')">
-            <img src="memory2.jpg" alt="Memory 2" onclick="openMemory('memory2.jpg')">
-            <img src="memory3.jpg" alt="Memory 3" onclick="openMemory('memory3.jpg')">
-        </div>
+        <!-- Add a play button for music -->
+        <button onclick="document.getElementById('myAudio').play()" style="
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        ">Play Music 💖</button>
     </div>
-
-    <audio id="bg-music" loop>
-        <source src="love-song.mp3" type="audio/mpeg">
+    <audio id="myAudio" loop>
+        <source src="music.mp3" type="audio/mpeg">
     </audio>
-    <button onclick="toggleMusic()">Play/Pause Music 🎵</button>
-
     <script>
-        function revealSecret() {
-            document.getElementById('secret-message').style.display = 'block';
-            setTimeout(() => {
-                document.getElementById('hearts-container').innerHTML = '';
-            }, 5000);
-        }
-
-        function openMemory(imageSrc) {
-            window.open(imageSrc, '_blank');
-        }
-
-        function toggleMusic() {
-            let music = document.getElementById('bg-music');
-            if (music.paused) {
-                music.play();
-            } else {
-                music.pause();
+        function createHearts() {
+            const heartsContainer = document.getElementById('hearts-container');
+            for (let i = 0; i < 50; i++) {
+                const heart = document.createElement('div');
+                heart.innerHTML = '❤️';
+                heart.classList.add('heart');
+                heart.style.left = Math.random() * 100 + '%';
+                heart.style.animationDelay = Math.random() * 2 + 's';
+                heartsContainer.appendChild(heart);
             }
         }
+
+        function revealSecret() {
+            document.getElementById('secret-message').style.display = 'block';
+            for(let i = 0; i < 20; i++) {
+                setTimeout(() => createHearts(), i * 100);
+            }
+        }
+
+        createHearts();
     </script>
 </body>
 </html>
