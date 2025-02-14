@@ -7,36 +7,65 @@
     <style>
         body {
             margin: 0;
-            height: 100vh;
-            background-image: url('background.jpg'); /* Background image */
+            min-height: 100vh;
+            background-image: url('background.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
             font-family: 'Arial', cursive;
-            overflow: hidden;
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
+            padding: 20px;
+        }
+
+        /* Header styling */
+        .header {
+            text-align: center;
+            color: #ff69b4;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            margin-bottom: 30px;
+        }
+
+        /* Photo grid container */
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px;
         }
 
         .photo {
-            width: 200px;
-            height: 200px;
-            margin: 10px;
-            border: 2px solid gold;
-            border-radius: 10px;
+            width: 100%;
+            height: 250px;
+            border: 3px solid gold;
+            border-radius: 15px;
             object-fit: cover;
-            animation: fadeIn 2s;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+        .photo:hover {
+            transform: scale(1.05);
+            cursor: pointer;
         }
 
-        /* Play Button Styling */
+        /* Back button styling */
+        .back-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            background: #ff69b4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1.1em;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        /* Play button styling */
         #playButton {
             position: fixed;
             bottom: 20px;
@@ -44,38 +73,63 @@
             background: #ff69b4;
             color: white;
             border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
+            padding: 10px 25px;
+            border-radius: 25px;
             cursor: pointer;
-            font-size: 1.2em;
+            font-size: 1.1em;
+            z-index: 1000;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
         }
     </style>
 </head>
 <body>
-    <img src="photo1.jpg" alt="Memory 1" class="photo">
-    <img src="photo2.jpg" alt="Memory 2" class="photo">
-    <img src="photo3.jpg" alt="Memory 3" class="photo">
-    <!-- Add more photos as needed -->
+    <!-- Back button to main page -->
+    <a href="index.html" class="back-button">← Back to Main</a>
 
-    <!-- Play Button -->
-    <button id="playButton">Play Music 💖</button>
+    <!-- Page header -->
+    <div class="header">
+        <h1>Our Precious Memories 💖</h1>
+        <p>Every moment with you is special...</p>
+    </div>
 
-    <!-- Audio Player -->
+    <!-- Photo grid -->
+    <div class="photo-grid">
+        <img src="photo1.jpg" alt="Our Memory 1" class="photo">
+        <img src="photo2.jpg" alt="Our Memory 2" class="photo">
+        <img src="photo3.jpg" alt="Our Memory 3" class="photo">
+        <!-- Add more photos as needed -->
+    </div>
+
+    <!-- Play button -->
+    <button id="playButton">Play Music 🎵</button>
+
+    <!-- Audio player -->
     <audio id="myAudio" loop>
         <source src="music.mp3" type="audio/mpeg">
-        Your browser does not support audio.
     </audio>
 
     <script>
-        // Start music when the play button is clicked
-        document.getElementById('playButton').onclick = function() {
-            document.getElementById('myAudio').play();
-        };
+        // Music control
+        const audio = document.getElementById('myAudio');
+        const playButton = document.getElementById('playButton');
 
-        // Optional: Autoplay after a small delay (may not work in all browsers)
-        setTimeout(() => {
-            document.getElementById('myAudio').play();
-        }, 1000); // 1-second delay
+        playButton.addEventListener('click', () => {
+            if (audio.paused) {
+                audio.play();
+                playButton.textContent = 'Pause Music ⏸️';
+            } else {
+                audio.pause();
+                playButton.textContent = 'Play Music 🎵';
+            }
+        });
+
+        // Optional: Start music automatically after user interaction
+        document.addEventListener('click', () => {
+            audio.play().catch(() => {
+                // Handle autoplay restrictions
+                playButton.style.display = 'block';
+            });
+        }, { once: true });
     </script>
 </body>
 </html>
